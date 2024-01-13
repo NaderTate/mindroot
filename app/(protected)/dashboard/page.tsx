@@ -7,9 +7,11 @@ type DashboardPageProps = {};
 const DashboardPage: NextPage = async ({}: DashboardPageProps) => {
   const session = await auth();
   return (
-    <>
-      {session?.user.email} <LogoutButton />
-    </>
+    <div className="space-y-2">
+      <h3>Welcome, {session?.user.name} </h3>
+      <h3>Signed in as: {session?.user.email}</h3>
+      <LogoutButton />
+    </div>
   );
 };
 
