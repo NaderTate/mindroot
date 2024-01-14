@@ -18,9 +18,8 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 import { signup } from "@/actions/signup";
-import { FormError } from "./FormError";
-import { FormSuccess } from "./FormSuccess";
-
+import { FormError } from "../FormError";
+import { FormSuccess } from "../FormSuccess";
 type SignUpProps = {};
 
 export const SignUpForm = ({}: SignUpProps) => {

@@ -8,10 +8,12 @@ import { sidebarData } from "./data";
 import { useSidebar } from "@/store/use-sidebar";
 import Toggle from "./Toggle";
 import Logo from "../Logo";
+import { usePathname } from "next/navigation";
 
 type SidebarProps = {};
 
 export const Sidebar = ({}: SidebarProps) => {
+  const pathname = usePathname();
   const { collapsed } = useSidebar((state) => state);
   return (
     <aside
@@ -43,7 +45,12 @@ export const Sidebar = ({}: SidebarProps) => {
                 key={child.link}
                 as={Link}
                 href={child.link}
-                className="text-sm block ml-6 text-default-50 my-1 tracking-wide "
+                className={cn(
+                  "text-sm block ml-6 my-1 tracking-wide",
+                  pathname.includes(child.link)
+                    ? "text-primary-500"
+                    : "text-default-50"
+                )}
               >
                 {child.label}
               </NUILink>

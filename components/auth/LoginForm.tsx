@@ -19,8 +19,8 @@ import {
 } from "@nextui-org/react";
 
 import { ErrorMessage } from "@hookform/error-message";
-import { FormError } from "@/components/auth/FormError";
-import { FormSuccess } from "@/components/auth/FormSuccess";
+import { FormError } from "@/components/FormError";
+import { FormSuccess } from "@/components/FormSuccess";
 import { Socials } from "./Socials";
 type Props = {};
 

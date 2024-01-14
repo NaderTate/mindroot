@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ResetSchema } from "@/schemas";
-import { FormError } from "@/components/auth/FormError";
-import { FormSuccess } from "@/components/auth/FormSuccess";
+import { FormError } from "@/components/FormError";
+import { FormSuccess } from "@/components/FormSuccess";
 
 import {
   Card,
