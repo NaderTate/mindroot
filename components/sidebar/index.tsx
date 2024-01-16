@@ -24,8 +24,8 @@ export const Sidebar = ({}: SidebarProps) => {
     >
       <div className="overflow-auto h-full p-10">
         <Logo className="mb-2" />
-        {sidebarData.map((item) => (
-          <div key={item.parent.link}>
+        {sidebarData.map((item, i) => (
+          <div key={item.parent.label + i}>
             <div className={`flex items-center gap-x-2 ${item.parent.color}`}>
               <item.parent.icon />
               {item.parent.link ? (

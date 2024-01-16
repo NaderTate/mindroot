@@ -1,7 +1,9 @@
 "use client";
+
+import { cn } from "@nextui-org/react";
+
 import { Sidebar } from "@/components/sidebar";
 import { useSidebar } from "@/store/use-sidebar";
-import { cn } from "@nextui-org/react";
 
 function ProtectedLayout({ children }: { children: React.ReactNode }) {
   const { collapsed } = useSidebar((state) => state);

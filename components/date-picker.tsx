@@ -10,7 +10,7 @@ import { CiCalendarDate } from "react-icons/ci";
 import { cn } from "@nextui-org/react";
 import { Calendar } from "./calendar";
 import { HTMLAttributes, useState } from "react";
-
+import "react-day-picker/dist/style.css";
 export function CalendarDateRangePicker({
   className,
   onSelect,

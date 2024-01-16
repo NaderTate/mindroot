@@ -3,6 +3,8 @@ import { CategoryCard } from "@/components/category-card";
 import { PageLabel } from "@/components/page-label";
 import { getCategories } from "@/actions/categories";
 import { currentUser } from "@/lib/user";
+import ContentContainer from "@/components/content-container";
+import PageContainer from "@/components/PageContainer";
 
 type CategoriesPageProps = { searchParams: { page: number; search?: string } };
 
@@ -21,15 +23,15 @@ const CategoriesPage = async ({ searchParams }: CategoriesPageProps) => {
   });
 
   return (
-    <div className="space-y-3">
+    <PageContainer>
       <PageLabel label="Categories" count={count} />
       <CateogoryForm />
-      <div className="flex flex-wrap gap-3">
+      <ContentContainer>
         {categories.map((category) => (
           <CategoryCard key={category.id} category={category} />
         ))}
-      </div>
-    </div>
+      </ContentContainer>
+    </PageContainer>
   );
 };
 

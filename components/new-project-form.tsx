@@ -19,15 +19,17 @@ import { projectSchema } from "@/schemas";
 import { ErrorMessage } from "@hookform/error-message";
 import { FormError } from "./FormError";
 import { FaPlus } from "react-icons/fa6";
-import { format } from "date-fns";
-
-import { DayPicker } from "react-day-picker";
-import "react-day-picker/dist/style.css";
 import { CalendarDateRangePicker } from "./date-picker";
 import { createProject } from "@/actions/projects";
-type NewProjectFormProps = { allCategories: { id: string; name: string }[] };
+type NewProjectFormProps = {
+  allCategories?: { id: string; name: string }[];
+  allTeams?: { id: string; name: string }[];
+};
 
-export const NewProject = ({ allCategories }: NewProjectFormProps) => {
+export const NewProject = ({
+  allCategories,
+  allTeams,
+}: NewProjectFormProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [error, setError] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -46,6 +48,7 @@ export const NewProject = ({ allCategories }: NewProjectFormProps) => {
       name: "",
       deadline: undefined,
       categories: [],
+      teams: [],
     },
   });
   const onSubmit = (values: z.infer<typeof projectSchema>) => {
@@ -107,41 +110,42 @@ export const NewProject = ({ allCategories }: NewProjectFormProps) => {
                       <Select
                         className="z-50"
                         placeholder="categories"
-                        options={allCategories.map((category) => ({
+                        options={allCategories?.map((category) => ({
                           value: category.id,
                           label: category.name,
                         }))}
-                        onChange={(
-                          value: { value: string; label: string }[]
-                        ) => {
+                        onChange={(value) => {
                           setValue(
                             "categories",
                             value.map((v) => v.value)
                           );
-                          console.log(getValues("categories"));
-                          // onChange(value);
                         }}
-                        // value={value}
                         isMulti
                         isClearable
                       />
                     )}
                   />
 
-                  {/* <Select
+                  <Select
                     className="z-20"
-                    placeholder="categories"
-                    options={allCategories.map((category) => ({
-                      value: category.id,
-                      label: category.name,
+                    placeholder="teams"
+                    options={allTeams?.map((team) => ({
+                      value: team.id,
+                      label: team.name,
                     }))}
+                    onChange={(value) => {
+                      setValue(
+                        "teams",
+                        value.map((v) => v.value)
+                      );
+                    }}
                     isMulti
                     isClearable
-                  /> */}
+                  />
                   <Controller
                     control={control}
                     name="deadline"
-                    render={({ field: { onChange, value } }) => (
+                    render={({ field: { onChange } }) => (
                       <CalendarDateRangePicker
                         onSelect={(date) => {
                           onChange(date);
@@ -151,7 +155,7 @@ export const NewProject = ({ allCategories }: NewProjectFormProps) => {
                   />
 
                   <FormError error={error} />
-                  <ModalFooter>
+                  <ModalFooter className="px-0">
                     <Button color="danger" variant="light" onPress={onClose}>
                       Cancel
                     </Button>

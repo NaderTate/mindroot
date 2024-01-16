@@ -45,7 +45,7 @@ export const createProject = async (values: z.infer<typeof projectSchema>) => {
     return { error: "Invalid fields!" };
   }
 
-  const { name, categories, deadline } = validatedFields.data;
+  const { name, categories, deadline, teams } = validatedFields.data;
   try {
     const project = await prisma.project.create({
       data: {
@@ -55,9 +55,9 @@ export const createProject = async (values: z.infer<typeof projectSchema>) => {
         categories: {
           connect: categories.map((id) => ({ id })),
         },
-        // teams: {
-        //   connect: teams.map((id) => ({ id })),
-        // },
+        teams: {
+          connect: teams.map((id) => ({ id })),
+        },
       },
     });
     if (!project) {

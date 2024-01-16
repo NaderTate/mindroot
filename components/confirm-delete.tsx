@@ -29,6 +29,7 @@ export default function ConfirmDelete({ id, label, deleteAction }: Props) {
         variant="light"
         color="danger"
         size="sm"
+        className="flex justify-start"
         startContent={<MdDeleteOutline size={20} />}
         onPress={onOpen}
       >

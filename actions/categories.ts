@@ -19,7 +19,9 @@ export const getCategories = async ({
   select?: Prisma.CategorySelect;
 }) => {
   const user = await currentUser();
-
+  if (!user) {
+    return { error: "Unauthorized" };
+  }
   const count = await prisma.category.count({
     where: {
       userId: user?.id,

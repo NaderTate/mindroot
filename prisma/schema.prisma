@@ -27,8 +27,8 @@ enum ProjectStatus {
 
 model User {
   id                    String                 @id @default(cuid())
-  name                  String?
-  email                 String?                @unique
+  name                  String
+  email                 String                 @unique
   image                 String?
   password              String?
   role                  Role                   @default(User)
@@ -59,10 +59,10 @@ model Category {
 model Team {
   id        String    @id @default(cuid())
   name      String
-  leader    User      @relation("leader", fields: [userId], references: [id])
+  leader    User      @relation("leader", fields: [leaderId], references: [id])
   members   User[]    @relation("member")
   projects  Project[]
-  userId    String
+  leaderId  String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }

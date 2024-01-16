@@ -93,6 +93,10 @@ export const projectSchema = z.object({
     message: "Name is required",
   }),
   categories: z.array(z.string()),
-  // teams: z.array(z.string()),
+  teams: z.array(z.string()),
   deadline: z.date().optional(),
+});
+export const teamSchema = z.object({
+  name: z.string().min(1, { message: "Name is required" }),
+  members: z.array(z.string()),
 });
